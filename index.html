@@ -7,7 +7,7 @@
     <title>Weather Dashboard</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -19,11 +19,13 @@
             <div class="col-md-3">
                 Search for a City
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                    <input type="text" class="form-control" aria-label="Sizing example input"
+                        aria-describedby="inputGroup-sizing-default" id="search-input">
                     <div class="input-group-append">
-                        <span class="input-group-text" id="inputGroup-sizing-default">Search</span>
+                        <button class="btn btn-outline-secondary search" type="button" id="button-addon2">Search</button>
                       </div>
                 </div>
+                <div id="search-list"></div>
             </div>
             <div class="col-md-9">
                 <div class="row">
