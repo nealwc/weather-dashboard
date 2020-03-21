@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,22 +18,29 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3">
-                Search for a City
-                <div class="input-group mb-3">
+                <div class="form-group">
+                    <label>Search for a City</label>
                     <input type="text" class="form-control" aria-label="Sizing example input"
                         aria-describedby="inputGroup-sizing-default" id="search-input">
                     <div class="input-group-append">
                         <button class="btn btn-outline-secondary search" type="button" id="button-addon2">Search</button>
                       </div>
+                      <!-- <form class="form-inline">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="search-input">
+                        <button class="form-group-append btn btn-outline-success my-2 my-sm-0 search" type="submit">Search</button>
+                      </form> -->
                 </div>
                 <div id="search-list"></div>
             </div>
             <div class="col-md-9">
-                <div class="row">
-                    test2
+                <div class="row" id="current-weather">
                 </div>
-                <div class="row">
-                    test3
+                <div class="row" id="five-day">
+                    <div class="col-md-2" id="day-one"></div>
+                    <div class="col-md-2" id="day-two"></div>
+                    <div class="col-md-2" id="day-three"></div>
+                    <div class="col-md-2" id="day-four"></div>
+                    <div class="col-md-2" id="day-five"></div>
                 </div>
             </div>
 
