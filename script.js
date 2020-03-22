@@ -18,21 +18,22 @@ $(".search").on("click", function () {
         .then(function (response) {
             console.log(response);
             console.log(response.name);
+            var iconUrl = "http://openweathermap.org/img/w/" + response.weather[0].icon + ".png";
+            var icon = $("<img>").attr("src", iconUrl);
             var temp = $("<p>").text("Teperature: " + response.main.temp);
             var humidity = $("<p>").text("Humidity: " + response.main.humidity + "%");
             var windSpeed = $("<p>").text("Wind Speed: " + response.wind.speed);
-    
+
             $("#city").append($("<p>").text(searchCity));
+            $("#city").append(icon);
             $("#tempurature").append(temp);
             $("#humid").append(humidity);
             $("#wind").append(windSpeed);
 
             var lat = response.coord.lat;
-            console.log(lat);
             var lon = response.coord.lon;
-            console.log(lon);
             var uvUrl = "http://api.openweathermap.org/data/2.5/uvi?appid=" + APIKey + "&lat=" + lat + "&lon=" + lon;
-            
+
             $.ajax({
                 url: uvUrl,
                 method: "GET"
@@ -46,6 +47,18 @@ $(".search").on("click", function () {
                     // if (UV ) //change background color depend on UV condition
                 })
         });
+
+    var fiveDayURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + searchCity + "&appid=" + APIKey;
+
+    $.ajax({
+        url: fiveDayURL,
+        method: "GET"
+
+    })
+        .then(function (response) {
+            console.log(response);
+
+        })
 
 });
 
