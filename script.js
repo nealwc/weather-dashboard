@@ -18,17 +18,33 @@ $(".search").on("click", function () {
         .then(function (response) {
             console.log(response);
             console.log(response.name);
-            var city = $("<h3>").text(searchCity);
             var temp = $("<p>").text("Teperature: " + response.main.temp);
             var humidity = $("<p>").text("Humidity: " + response.main.humidity + "%");
             var windSpeed = $("<p>").text("Wind Speed: " + response.wind.speed);
-            var UVIndex = $("<p>").text("")
-            $("#current-weather").append(city);
-            $("#current-weather").append(temp);
-            $("#current-weather").append(humidity);
-            $("#current-weather").append(windSpeed);
-            $("#current-weather").append(UVIndex);
+    
+            $("#city").append($("<p>").text(searchCity));
+            $("#tempurature").append(temp);
+            $("#humid").append(humidity);
+            $("#wind").append(windSpeed);
 
+            var lat = response.coord.lat;
+            console.log(lat);
+            var lon = response.coord.lon;
+            console.log(lon);
+            var uvUrl = "http://api.openweathermap.org/data/2.5/uvi?appid=" + APIKey + "&lat=" + lat + "&lon=" + lon;
+            
+            $.ajax({
+                url: uvUrl,
+                method: "GET"
+            })
+                .then(function (response) {
+                    console.log(response);
+                    var UV = $("<p>").text("UV Index: " + response.value);
+
+                    $("#uv-index").append(UV);
+
+                    // if (UV ) //change background color depend on UV condition
+                })
         });
 
 });
