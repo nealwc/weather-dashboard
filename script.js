@@ -86,10 +86,16 @@ $(".search").on("click", function () {
                         var date = new Date(response.list[i].dt * 1000).toLocaleDateString("en-US"); // future date
                         // var iconUrl = "http://openweathermap.org/img/w/" + response.list[i].weather[i].icon + ".png"; // future weather icon
                         // var icon = $("<img>").attr("src", iconUrl);
-                        var temp = ((response.list[i].main.temp - 271.15) * 1.8 + 32).toFixed(1);
-                        var humidity = response.list[i].main.humidity;
+                        var temp = $("<div>").html("Temperature: " + ((response.list[i].main.temp - 271.15) * 1.8 + 32).toFixed(1) + " &deg;F");
+                        var humidity = $("<div>").text("Humidity: " +response.list[i].main.humidity + "%");
                         var newCard = $("<div>").attr("class", "card");
                         var newCardBody = $("<div>").attr("class", "card-body bg-primary text-white");
+                        
+                        
+                        $("#five-day").append(date);
+                        // $("#five-day").append(icon);
+                        $("#five-day").append(temp);
+                        $("#five-day").append(humidity);
 
                         console.log(date);
                         console.log(temp);
