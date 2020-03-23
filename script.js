@@ -6,6 +6,9 @@ $(".search").on("click", function () {
     // $("#search-input").empty();
     $("#search-list").prepend(newDiv);
 
+    $("#current-weather").attr("class", "card border-secondary mb-3"); // format curent weather in a bootstrap card
+    $("#five-day").attr("class", "card border-secondary mb-3"); // format five day forcast in a bootstrap card
+
     var APIKey = "75900bea1841f363eb7e4ff8ed89560d";
 
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" +
@@ -25,11 +28,11 @@ $(".search").on("click", function () {
             var temp = $("<p>").html("Teperature: " + fahrTemp + " &deg;F");
             var humidity = $("<p>").text("Humidity: " + response.main.humidity + "%");
             var windSpeed = $("<p>").text("Wind Speed: " + response.wind.speed + " MPH");
-            var date = new Date(response.dt*1000).toLocaleDateString("en-US"); // convert dt to date
+            var date = new Date(response.dt * 1000).toLocaleDateString("en-US"); // convert dt to date
 
             $("#city").append($("<h3>").text(cityName + " (" + date + ")"));
             $("#city").append(icon);
-            $("#tempurature").append(temp);
+            $("#temperature").append(temp);
             $("#humid").append(humidity);
             $("#wind").append(windSpeed);
 
@@ -71,8 +74,19 @@ $(".search").on("click", function () {
             })
                 .then(function (response) {
                     console.log(response);
+                    for (i = 0; i < 5; i++) {
+                        var date = new Date(response.list[i].dt * 1000).toLocaleDateString("en-US"); // future date
+                        var iconUrl = "http://openweathermap.org/img/w/" + response.list[i].weather[i].icon + ".png"; // future weather icon
+                        var icon = $("<img>").attr("src", iconUrl);
+                        var temp = ((response.list[i].main.temp - 271.15) * 1.8 + 32).toFixed(1);
+                        var humidity = response.list[i].main.humidity
+
+                        console.log(date);
+                        console.log(temp);
+                        console.log(humidity);
+                    }
 
                 })
 
         });
-    });
+});
