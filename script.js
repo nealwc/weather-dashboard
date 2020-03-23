@@ -1,4 +1,12 @@
 $(".search").on("click", function () {
+    // clear previous search results
+    $("#city").empty();
+    $("#temperature").empty()
+    $("#humid").empty()
+    $("#wind").empty()
+    $("#wind").empty()
+    $("#uv-index").empty()
+
     var searchCity = $("#search-input").val();
     console.log(searchCity);
 
@@ -47,20 +55,20 @@ $(".search").on("click", function () {
                 .then(function (response) {
                     console.log(response);
                     var UV = response.value;
-                    var UVel = $("<p>").text("UV Index: ");
+                    var UVel = $("<p>").text("UV Index: " + UV);
                     console.log(UV);
 
                     $("#uv-index").append(UVel);
 
-                    //change background color of UV index depending on UV condition
+                    // change background color of UV index depending on UV condition
                     // if (UV < 2) {
-                    //     $("#uv-index").append(UV).attr("class", "badge badge-primary");
+                    //     $("#uv-index").append(UV).attr("style", "backgound: green");
                     // } else if (UV >= 2 && UV < 5) {
-                    //     $("#uv-index").append(UV).attr("class", "badge badge-warning");
+                    //     $("#uv-index").append(UV).attr("style", "backgound: green");
                     // } else {
-                    //     $("#uv-index").append(UV).attr("class", "bg-danger text-white");
+                    //     $("#uv-index").append(UV).attr("style", "backgound: green");
                     // }
-                    // })
+                    })
                 });
 
             $("#forecast").text("5-Day Forecast:")
@@ -76,17 +84,20 @@ $(".search").on("click", function () {
                     console.log(response);
                     for (i = 0; i < 5; i++) {
                         var date = new Date(response.list[i].dt * 1000).toLocaleDateString("en-US"); // future date
-                        var iconUrl = "http://openweathermap.org/img/w/" + response.list[i].weather[i].icon + ".png"; // future weather icon
-                        var icon = $("<img>").attr("src", iconUrl);
+                        // var iconUrl = "http://openweathermap.org/img/w/" + response.list[i].weather[i].icon + ".png"; // future weather icon
+                        // var icon = $("<img>").attr("src", iconUrl);
                         var temp = ((response.list[i].main.temp - 271.15) * 1.8 + 32).toFixed(1);
-                        var humidity = response.list[i].main.humidity
+                        var humidity = response.list[i].main.humidity;
+                        var newCard = $("<div>").attr("class", "card");
+                        var newCardBody = $("<div>").attr("class", "card-body bg-primary text-white");
 
                         console.log(date);
                         console.log(temp);
                         console.log(humidity);
+
+
                     }
 
                 })
 
         });
-});
