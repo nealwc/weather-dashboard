@@ -30,7 +30,7 @@ $(".search").on("click", function () {
             console.log(response);
             console.log(response.name);
             var cityName = response.name // open weather API's city name
-            var iconUrl = "http://openweathermap.org/img/w/" + response.weather[0].icon + ".png"; // current weather icon
+            var iconUrl = "https://openweathermap.org/img/w/" + response.weather[0].icon + ".png"; // current weather icon
             var icon = $("<img>").attr("src", iconUrl);
             var fahrTemp = ((response.main.temp - 271.15) * 1.8 + 32).toFixed(1); // converts open weather API 
             var temp = $("<p>").html("Teperature: " + fahrTemp + " &deg;F");
@@ -46,7 +46,7 @@ $(".search").on("click", function () {
 
             var lat = response.coord.lat; // grab lattitude from current weather API for UV Index API
             var lon = response.coord.lon; // grab longitude from current weather API for UV Index API
-            var uvUrl = "http://api.openweathermap.org/data/2.5/uvi?appid=" + APIKey + "&lat=" + lat + "&lon=" + lon;
+            var uvUrl = "https://api.openweathermap.org/data/2.5/uvi?appid=" + APIKey + "&lat=" + lat + "&lon=" + lon;
 
             $.ajax({
                 url: uvUrl,
@@ -84,7 +84,7 @@ $(".search").on("click", function () {
                     console.log(response);
                     for (i = 0; i < 5; i++) {
                         var date = new Date(response.list[i].dt * 1000).toLocaleDateString("en-US"); // future date
-                        // var iconUrl = "http://openweathermap.org/img/w/" + response.list[i].weather[i].icon + ".png"; // future weather icon
+                        // var iconUrl = "https://openweathermap.org/img/w/" + response.list[i].weather[i].icon + ".png"; // future weather icon
                         // var icon = $("<img>").attr("src", iconUrl);
                         var temp = $("<div>").html("Temperature: " + ((response.list[i].main.temp - 271.15) * 1.8 + 32).toFixed(1) + " &deg;F");
                         var humidity = $("<div>").text("Humidity: " +response.list[i].main.humidity + "%");
